@@ -21,10 +21,22 @@ fragment header on LandingPage {
   }
 }
 
+fragment sectionAboutProject on LandingPage {
+  sectionAboutProject {
+    title
+    description
+    image {
+      alternativeText
+      url
+    }
+  }
+}
+
 query GET_LANDING_PAGE {
   landingPage {
     ...logo
-    ...header
+		...header
+		...sectionAboutProject
   }
 }
 `
