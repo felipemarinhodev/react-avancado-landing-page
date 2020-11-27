@@ -12,23 +12,17 @@ type Props = {
   sectionModules: SectionModulesProps
 }
 
-const SectionModules = ({ sectionModules }: Props) => {
-  console.log('sectionModule', sectionModules)
-
-  return (
-    <Container>
-      <Heading reverseColor>{sectionModules.title}</Heading>
-      <S.Content>
-        {sectionModules.modules.map(
-          ({ title, subtitle, description }, index) => (
-            <CardModule key={index} title={title} subTitle={subtitle}>
-              <div dangerouslySetInnerHTML={{ __html: description }} />
-            </CardModule>
-          )
-        )}
-      </S.Content>
-    </Container>
-  )
-}
+const SectionModules = ({ sectionModules }: Props) => (
+  <Container>
+    <Heading reverseColor>{sectionModules.title}</Heading>
+    <S.Content>
+      {sectionModules.modules.map(({ title, subtitle, description }, index) => (
+        <CardModule key={index} title={title} subTitle={subtitle}>
+          <div dangerouslySetInnerHTML={{ __html: description }} />
+        </CardModule>
+      ))}
+    </S.Content>
+  </Container>
+)
 
 export default SectionModules
