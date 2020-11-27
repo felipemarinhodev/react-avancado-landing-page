@@ -4,22 +4,29 @@ import Button from 'components/Button'
 import { gaEvent } from 'utils/ga'
 
 import * as S from './styles'
+import { PricingBoxProps } from 'types/api'
 
 const onClick = () =>
   gaEvent({ action: 'click', category: 'buy', label: 'pricing box button' })
 
-const PricingBox = () => (
+type Props = {
+  pricingBox: PricingBoxProps
+}
+
+const PricingBox = ({ pricingBox }: Props) => (
   <S.Box>
     <S.Prices>
       <S.FullPrice>
-        De <span>R$549</span> por apenas
+        De <span>{`R$${pricingBox.totalPrice}`}</span> por apenas
       </S.FullPrice>
       <S.DiscountPrice>
-        <span>6x de</span> R$65
+        <span>{`${pricingBox.numberInstallments}x de`}</span>{' '}
+        {`R$${pricingBox.priceInstallment}`}
       </S.DiscountPrice>
     </S.Prices>
     <S.BenefitsList>
-      <S.BenefitsItem>
+      {pricingBox.benefits}
+      {/* <S.BenefitsItem>
         Acesso aos <strong>6 módulos</strong> assim que lançados
       </S.BenefitsItem>
 
@@ -33,18 +40,16 @@ const PricingBox = () => (
 
       <S.BenefitsItem>
         <strong>Lives exclusivas</strong> durante o curso
-      </S.BenefitsItem>
+      </S.BenefitsItem> */}
     </S.BenefitsList>
 
-    <Button
-      href="https://www.udemy.com/course/react-avancado/?couponCode=PROMONOV20"
-      onClick={onClick}
-      withPrice
-    >
-      <p>Comprar o curso</p>
+    <Button href={pricingBox.button.url} onClick={onClick} withPrice>
+      <p>{pricingBox.button.label}</p>
       <div>
-        <S.ButtonFullPrice>R$549</S.ButtonFullPrice>
-        <S.ButtonDiscountPrice>R$389</S.ButtonDiscountPrice>
+        <S.ButtonFullPrice>{`R$${pricingBox.totalPrice}`}</S.ButtonFullPrice>
+        <S.ButtonDiscountPrice>{`R$${
+          pricingBox.priceInstallment * pricingBox.numberInstallments
+        }`}</S.ButtonDiscountPrice>
       </div>
     </Button>
   </S.Box>
