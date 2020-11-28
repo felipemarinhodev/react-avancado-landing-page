@@ -6,20 +6,25 @@ import ProfileCard from 'components/ProfileCard'
 
 import content from './content'
 import * as S from './styles'
+import { SectionAboutUsProps } from 'types/api'
 
-const SectionAboutUs = () => (
+type Props = {
+  sectionAboutUs: SectionAboutUsProps
+}
+
+const SectionAboutUs = ({ sectionAboutUs }: Props) => (
   <Container>
-    <Heading reverseColor>Quem somos nós?</Heading>
+    <Heading reverseColor>{sectionAboutUs.title}</Heading>
 
     <S.Content>
-      {content.map((profile) => (
+      {sectionAboutUs.authors.map((author) => (
         <ProfileCard
-          key={profile.name}
-          name={profile.name}
-          role={profile.role}
-          image={profile.image}
-          socialLinks={profile.socialLinks}
-          description={profile.description}
+          key={author.name}
+          name={author.name}
+          role={author.role}
+          image={author.photo.url}
+          socialLinks={author.socialLinks}
+          description={author.description}
         />
       ))}
     </S.Content>

@@ -85,6 +85,25 @@ fragment pricingBox on LandingPage {
   }
 }
 
+fragment sectionAboutUs on LandingPage {
+  sectionAboutUs {
+    title
+    authors {
+			name
+			role
+      description
+      socialLinks {
+        title
+        url
+      }
+      photo {
+        url
+        alternativeText
+      }
+    }
+  }
+}
+
 query GET_LANDING_PAGE {
   landingPage {
     ...logo
@@ -95,6 +114,7 @@ query GET_LANDING_PAGE {
 		...sectionModules
 		...sectionAgenda
 		...pricingBox
+		...sectionAboutUs
   }
 }
 `
