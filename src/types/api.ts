@@ -34,13 +34,11 @@ export type SectionTechProps = {
   techIcons: [TechIcon]
 }
 
-type Concepts = {
-  title: string
-}
-
 export type SectionConceptsProps = {
   title: string
-  concepts: [Concepts]
+  concepts: Array<{
+    title: string
+  }>
 }
 
 type Module = {
@@ -75,7 +73,7 @@ export type SocialLink = {
   url: string
 }
 
-type Author = {
+export type Author = {
   name: string
   role: string
   description: string
@@ -88,13 +86,16 @@ export type SectionAboutUsProps = {
   authors: [Author]
 }
 
+export type Review = {
+  id: number
+  name: string
+  text: string
+  photo: Image
+}
+
 export type SectionReviewsProps = {
   title: string
-  reviews: {
-    name: string
-    text: string
-    photo: Image
-  }
+  reviews: Review[]
 }
 
 type Question = {
